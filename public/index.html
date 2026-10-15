@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VTest</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <a href="#" class="logo" id="home">VTest</a>
+    <span class="who" id="who"></span>
+    <span class="timer" id="timer" hidden></span>
+  </header>
+
+  <main>
+    <!-- Пароль: без него тест не расшифровать -->
+    <section id="lock" class="card" hidden>
+      <h1>Вход</h1>
+      <label>Пароль
+        <input id="password" type="password" autocomplete="current-password">
+      </label>
+      <p class="error" id="lock-error" hidden></p>
+      <div class="row">
+        <button id="unlock" class="primary">Войти</button>
+      </div>
+    </section>
+
+    <!-- Выбор теста и студента -->
+    <section id="start" class="card" hidden>
+      <h1 id="title">Тестирование</h1>
+      <label id="test-row" hidden>Тест
+        <select id="test"></select>
+      </label>
+      <label>Фамилия и имя
+        <input id="name" type="text" autocomplete="name">
+      </label>
+      <fieldset class="modes">
+        <legend>Режим</legend>
+        <label class="option"><input type="radio" name="mode" value="train" checked>
+          <span><b>С ответами</b><br><small>после каждого ответа видно, верно или нет</small></span></label>
+        <label class="option"><input type="radio" name="mode" value="exam">
+          <span><b>Без ответов</b><br><small>только итоговый результат в конце</small></span></label>
+      </fieldset>
+      <p class="info" id="test-info"></p>
+      <p class="error" id="start-error" hidden></p>
+      <div class="row">
+        <button id="begin" class="primary">Начать тест</button>
+        <a href="#journal" class="ghost btn">Журнал результатов</a>
+      </div>
+    </section>
+
+    <!-- Прохождение -->
+    <section id="quiz" class="card" hidden>
+      <div class="progress"><div id="bar"></div></div>
+      <p class="counter" id="counter"></p>
+      <div class="question" id="question"></div>
+      <div class="answers" id="answers"></div>
+      <p class="feedback" id="feedback" hidden></p>
+      <div class="row">
+        <button id="prev" class="ghost">← Назад</button>
+        <button id="next" class="primary">Далее →</button>
+        <button id="finish" class="ghost danger">Завершить</button>
+      </div>
+      <div class="confirm" id="finish-confirm" hidden>
+        <span id="finish-text"></span>
+        <button id="finish-yes" class="primary">Да, завершить</button>
+        <button id="finish-no" class="ghost">Продолжить тест</button>
+      </div>
+      <nav class="dots" id="dots"></nav>
+    </section>
+
+    <!-- Результат -->
+    <section id="result" class="card" hidden>
+      <h1>Результат</h1>
+      <p class="big" id="score"></p>
+      <p class="info" id="score-info"></p>
+      <div class="row">
+        <button id="again" class="primary">Другой тест</button>
+      </div>
+    </section>
+
+    <!-- Журнал -->
+    <section id="journal" class="card" hidden>
+      <h1>Журнал результатов</h1>
+      <p class="info">Результаты, сохранённые в этом браузере.</p>
+      <table>
+        <thead><tr><th>Дата</th><th>Тест</th><th>Студент</th><th>Результат</th></tr></thead>
+        <tbody id="journal-rows"></tbody>
+      </table>
+      <div class="row">
+        <button id="export" class="primary">Скачать для Excel</button>
+        <button id="clear" class="ghost danger">Очистить</button>
+        <a href="#" class="ghost btn">Назад</a>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
