@@ -127,12 +127,12 @@ function shuffle(arr) {
 }
 
 // Набор вопросов для одной попытки: из каждого раздела случайные qqa штук,
-// варианты ответа перемешаны.
+// порядок вопросов и вариантов ответа каждый раз новый.
 export function makeAttempt(test) {
   const items = [];
   for (const sec of test.sections) {
     const idx = shuffle([...Array(sec.count).keys()].map((n) => sec.from + n)).slice(0, sec.ask);
-    for (const qi of idx.sort((a, b) => a - b)) {
+    for (const qi of idx) {
       const q = test.questions[qi];
       items.push({
         q,
@@ -142,7 +142,7 @@ export function makeAttempt(test) {
       });
     }
   }
-  return items;
+  return shuffle(items);
 }
 
 function normalize(s) {
